@@ -7,7 +7,6 @@ import ProjectsSection from '@/components/ProjectsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { ArrowDown } from 'lucide-react';
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,60 +23,64 @@ const Index = () => {
   };
 
   return (
-    <div className={`min-h-screen ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500`}>
+    <div className={`min-h-screen ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500 bg-black text-white`}>
       <Navbar />
       
       {/* Hero Section */}
       <section className="min-h-screen flex flex-col items-center justify-center px-6 md:px-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-secondary/30 z-0" />
-        
         <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center z-10 pt-16">
-          <div className="text-center space-y-10">
-            <div className="space-y-6">
-              <p className="text-muted-foreground font-mono tracking-wide animate-fade-in">
-                Hello, I'm a
-              </p>
-              
+          <div className="text-center space-y-16">
+            <div className="space-y-8">
               <BouncingText
-                text="not your average frontend developer"
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-none mb-4 max-w-4xl"
-                letterClassName="px-1"
-                initialDelay={300}
-                staggerDelay={50}
+                text="NOT"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none mb-4 max-w-4xl"
+                letterClassName="px-1 text-white"
               />
               
-              <p className="text-muted-foreground max-w-xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: '2s', animationFillMode: 'forwards' }}>
-                Crafting exceptional digital experiences with clean code and creative solutions.
-              </p>
+              <BouncingText
+                text="YOUR"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none mb-4 max-w-4xl"
+                letterClassName="px-1 text-white"
+              />
+              
+              <BouncingText
+                text="AVERAGE"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none mb-4 max-w-4xl"
+                letterClassName="px-1 text-white"
+              />
+              
+              <BouncingText
+                text="SOFTWARE"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none mb-4 max-w-4xl"
+                letterClassName="px-1 text-white"
+              />
+              
+              <BouncingText
+                text="ENGINEER"
+                className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tight leading-none mb-4 max-w-4xl"
+                letterClassName="px-1 text-white"
+              />
             </div>
             
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in opacity-0" style={{ animationDelay: '2.5s', animationFillMode: 'forwards' }}>
+            <div className="flex justify-center">
               <Button 
-                size="lg" 
-                onClick={() => scrollToSection('projects')}
-                className="group px-6"
-              >
-                View My Work
-                <ArrowDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
-              </Button>
-              
-              <Button 
-                variant="outline" 
                 size="lg" 
                 onClick={() => scrollToSection('contact')}
-                className="px-6"
+                className="border border-[#00ffc3] bg-transparent text-[#00ffc3] hover:bg-[#00ffc3]/10 px-8 py-6 text-lg"
               >
-                Get In Touch
+                Hire Me
               </Button>
             </div>
           </div>
         </div>
         
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/50 flex items-start justify-center p-1">
-            <div className="w-1 h-2 bg-muted-foreground/50 rounded-full animate-slide-down" />
-          </div>
+        {/* Background HTML/CSS Tags */}
+        <div className="absolute text-gray-600/20 text-xl md:text-2xl font-mono">
+          <span className="absolute top-1/4 left-20">&lt;html&gt;</span>
+          <span className="absolute top-1/3 left-32">&lt;body&gt;</span>
+          <span className="absolute top-1/2 left-24">&lt;section&gt;</span>
+          <span className="absolute bottom-1/3 right-32">&lt;div&gt;</span>
+          <span className="absolute bottom-1/4 right-20">&lt;return&gt;</span>
         </div>
       </section>
       
