@@ -2,32 +2,41 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Card, CardContent } from '@/components/ui/card';
+import { ExternalLink, Github } from 'lucide-react';
 
 const ProjectsSection: React.FC = () => {
   const projects = [
     {
       title: "E-commerce Platform",
-      description: "A modern e-commerce platform with a focus on user experience and performance.",
+      description: "A modern e-commerce platform with a focus on user experience and performance. Features include product search, filtering, cart management, and secure checkout.",
       imageUrl: "https://images.unsplash.com/photo-1639322537158-c5d1cea8361e?q=80&w=800&auto=format&fit=crop",
-      technologies: ["React", "Node.js", "MongoDB"]
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      githubUrl: "https://github.com/username/ecommerce",
+      liveUrl: "https://ecommerce.example.com"
     },
     {
       title: "Portfolio Website",
-      description: "A personal portfolio website with unique animations and interactions.",
+      description: "A personal portfolio website with unique animations and interactions. Features a responsive design, dark/light mode, and contact form integration.",
       imageUrl: "https://images.unsplash.com/photo-1595665593673-bf1ad72905c0?q=80&w=800&auto=format&fit=crop",
-      technologies: ["Next.js", "Tailwind CSS", "Framer Motion"]
+      technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
+      githubUrl: "https://github.com/username/portfolio",
+      liveUrl: "https://portfolio.example.com"
     },
     {
       title: "Dashboard UI",
-      description: "A comprehensive dashboard interface for monitoring and analytics.",
+      description: "A comprehensive dashboard interface for monitoring and analytics. Includes customizable widgets, real-time data visualization, and report generation.",
       imageUrl: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop",
-      technologies: ["React", "D3.js", "Firebase"]
+      technologies: ["React", "D3.js", "Firebase", "Material UI"],
+      githubUrl: "https://github.com/username/dashboard",
+      liveUrl: "https://dashboard.example.com"
     },
     {
-      title: "Mobile App",
-      description: "A cross-platform mobile application for task management.",
+      title: "Task Management App",
+      description: "A cross-platform mobile application for task management with collaboration features. Supports task assignment, due dates, and progress tracking.",
       imageUrl: "https://images.unsplash.com/photo-1601933513711-9bed9b0e6739?q=80&w=800&auto=format&fit=crop",
-      technologies: ["React Native", "Redux", "Express"]
+      technologies: ["React Native", "Redux", "Express", "PostgreSQL"],
+      githubUrl: "https://github.com/username/taskapp",
+      liveUrl: "https://taskapp.example.com"
     }
   ];
 
@@ -54,7 +63,7 @@ const ProjectsSection: React.FC = () => {
               <CardContent className="p-4">
                 <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
                 <p className="text-sm text-gray-300 mb-3">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, techIndex) => (
                     <span 
                       key={techIndex} 
@@ -63,6 +72,26 @@ const ProjectsSection: React.FC = () => {
                       {tech}
                     </span>
                   ))}
+                </div>
+                <div className="flex gap-3">
+                  <a 
+                    href={project.githubUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-sm flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
+                  >
+                    <Github size={16} />
+                    <span>Code</span>
+                  </a>
+                  <a 
+                    href={project.liveUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-sm flex items-center gap-1 text-gray-400 hover:text-white transition-colors"
+                  >
+                    <ExternalLink size={16} />
+                    <span>Live Preview</span>
+                  </a>
                 </div>
               </CardContent>
             </Card>

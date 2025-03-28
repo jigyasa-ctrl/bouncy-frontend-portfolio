@@ -1,8 +1,22 @@
 
-import React from 'react';
-import { Play, SkipForward, SkipBack, Volume2, Maximize2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { Play, Pause, SkipForward, SkipBack, Volume2, Maximize2 } from 'lucide-react';
 
 const SpotifyFooter = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(134); // 2:14 in seconds
+  const totalTime = 225; // 3:45 in seconds
+
+  const togglePlayPause = () => {
+    setIsPlaying(!isPlaying);
+  };
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   return (
     <div className="fixed bottom-0 left-0 right-0 h-[90px] bg-[#181818] border-t border-[#282828] flex items-center px-4 z-50">
       <div className="w-[30%] flex items-center">
@@ -20,20 +34,32 @@ const SpotifyFooter = () => {
           <button className="text-gray-400 hover:text-white transition-colors">
             <SkipBack size={20} />
           </button>
-          <button className="bg-white rounded-full w-8 h-8 flex items-center justify-center">
-            <Play size={16} className="text-black ml-0.5" />
+          <button 
+            onClick={togglePlayPause}
+            className="bg-white rounded-full w-8 h-8 flex items-center justify-center hover:scale-105 transition-transform"
+          >
+            {isPlaying ? 
+              <Pause size={16} className="text-black" /> : 
+              <Play size={16} className="text-black ml-0.5" />
+            }
           </button>
           <button className="text-gray-400 hover:text-white transition-colors">
             <SkipForward size={20} />
           </button>
         </div>
         <div className="flex items-center w-full mt-2">
-          <span className="text-xs text-gray-400 mr-2">2:14</span>
+          <span className="text-xs text-gray-400 mr-2">{formatTime(currentTime)}</span>
           <div className="h-1 bg-gray-600 rounded-full flex-1 relative">
-            <div className="h-full w-1/3 bg-white rounded-full"></div>
-            <div className="absolute top-1/2 left-1/3 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 hover:opacity-100 cursor-pointer"></div>
+            <div 
+              className="h-full bg-white rounded-full"
+              style={{ width: `${(currentTime / totalTime) * 100}%` }}
+            ></div>
+            <div 
+              className="absolute top-1/2 left-0 transform -translate-y-1/2 w-3 h-3 bg-white rounded-full opacity-0 hover:opacity-100 cursor-pointer"
+              style={{ left: `${(currentTime / totalTime) * 100}%` }}
+            ></div>
           </div>
-          <span className="text-xs text-gray-400 ml-2">3:45</span>
+          <span className="text-xs text-gray-400 ml-2">{formatTime(totalTime)}</span>
         </div>
       </div>
       
