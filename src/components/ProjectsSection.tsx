@@ -9,21 +9,25 @@ const ProjectsSection: React.FC = () => {
       title: "E-commerce Platform",
       description: "A modern e-commerce platform with a focus on user experience and performance.",
       imageUrl: "https://images.unsplash.com/photo-1639322537158-c5d1cea8361e?q=80&w=800&auto=format&fit=crop",
+      technologies: ["React", "Node.js", "MongoDB"]
     },
     {
       title: "Portfolio Website",
       description: "A personal portfolio website with unique animations and interactions.",
       imageUrl: "https://images.unsplash.com/photo-1595665593673-bf1ad72905c0?q=80&w=800&auto=format&fit=crop",
+      technologies: ["Next.js", "Tailwind CSS", "Framer Motion"]
     },
     {
       title: "Dashboard UI",
       description: "A comprehensive dashboard interface for monitoring and analytics.",
       imageUrl: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop",
+      technologies: ["React", "D3.js", "Firebase"]
     },
     {
       title: "Mobile App",
       description: "A cross-platform mobile application for task management.",
       imageUrl: "https://images.unsplash.com/photo-1601933513711-9bed9b0e6739?q=80&w=800&auto=format&fit=crop",
+      technologies: ["React Native", "Redux", "Express"]
     }
   ];
 
@@ -48,9 +52,18 @@ const ProjectsSection: React.FC = () => {
                 style={{ backgroundImage: `url(${project.imageUrl})` }}
               ></div>
               <CardContent className="p-4">
-                <div className="w-full h-1.5 bg-gray-600 rounded-full mb-3"></div>
-                <div className="w-3/4 h-1.5 bg-gray-600 rounded-full mb-3"></div>
-                <div className="w-1/2 h-1.5 bg-gray-600 rounded-full"></div>
+                <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+                <p className="text-sm text-gray-300 mb-3">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span 
+                      key={techIndex} 
+                      className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </CardContent>
             </Card>
           ))}
