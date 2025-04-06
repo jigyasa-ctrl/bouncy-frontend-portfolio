@@ -48,8 +48,8 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-1">Email</h3>
-                  <a href="mailto:contact@example.com" className="text-muted-foreground hover:text-foreground transition-colors">
-                    contact@example.com
+                  <a href="mailto:jigyasaupadhyay.work@gmail.com" className="text-muted-foreground transition-colors">
+                    jigyasaupadhyay.work@gmail.com
                   </a>
                 </div>
               </div>
@@ -63,7 +63,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-1">Location</h3>
-                  <p className="text-muted-foreground">San Francisco, CA</p>
+                  <p className="text-muted-foreground">Remote</p>
                 </div>
               </div>
             </div>
@@ -79,7 +79,7 @@ const ContactSection: React.FC = () => {
                   id="name"
                   name="name"
                   required
-                  placeholder="John Doe"
+                  placeholder="Jigyasa Upadhyay"
                   className="bg-background/50"
                 />
               </div>

@@ -10,7 +10,7 @@ const ProjectsSection: React.FC = () => {
       title: "E-commerce Platform",
       description: "A modern e-commerce platform with a focus on user experience and performance. Features include product search, filtering, cart management, and secure checkout with Stripe integration.",
       imageUrl: "https://images.unsplash.com/photo-1639322537158-c5d1cea8361e?q=80&w=800&auto=format&fit=crop",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      technologies: ["React", "Node.js", "AI", "Stripe"],
       githubUrl: "https://github.com/username/ecommerce",
       liveUrl: "https://ecommerce.example.com"
     },
@@ -80,7 +80,7 @@ const ProjectsSection: React.FC = () => {
                 </div>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
+                <h3 className="text-xl font-semibold mb-3 text-white">{project.title}</h3>
                 <p className="text-sm text-gray-300 mb-4 line-clamp-3">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, techIndex) => (

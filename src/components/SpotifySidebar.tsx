@@ -17,7 +17,7 @@ const SpotifySidebar = () => {
           JD
         </div>
         <div className="flex flex-col">
-          <span className="font-semibold text-white text-xl">John Doe</span>
+          <span className="font-semibold text-white text-xl">Jigyasa Upadhyay</span>
           <span className="text-xs text-gray-400">Frontend Developer</span>
         </div>
       </div>
@@ -61,7 +61,7 @@ const SpotifySidebar = () => {
           Technologies
         </h3>
         <div className="space-y-1">
-          {["React", "TypeScript", "Next.js", "Node.js", "Tailwind", "MongoDB"].map((tech, index) => (
+          {["React", "TypeScript", "Next.js", "Node.js", "Tailwind", "AI"].map((tech, index) => (
             <div key={index} className="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#282828] rounded-md transition-colors">
               {tech}
             </div>

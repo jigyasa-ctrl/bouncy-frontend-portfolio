@@ -9,6 +9,7 @@ import SpotifyFooter from '@/components/SpotifyFooter';
 import SpotifySidebar from '@/components/SpotifySidebar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Code, Layout, Sparkles, Database } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,7 +52,7 @@ const Index = () => {
           {/* Hero Section */}
           <section className="px-8 pt-12 pb-6 bg-gradient-to-b from-[#1a1a1a] to-[#121212]">
             <div className="max-w-4xl">
-              <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Hi, I'm John Doe</h1>
+              <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Hi, I'm Jigyasa Upadhyay</h1>
               <h2 className="text-3xl md:text-4xl text-gray-300 font-semibold mb-6">Frontend Developer</h2>
               <p className="text-gray-400 text-lg mb-16 max-w-2xl">
                 Creating exceptional digital experiences with clean code and modern design principles. Specialized in React, TypeScript, and Next.js development.
@@ -66,7 +67,7 @@ const Index = () => {
                   <Card key={index} className="bg-[#282828] border-none hover:bg-[#333] transition-colors hover:translate-y-[-5px] duration-300">
                     <CardContent className="flex flex-col items-center justify-center p-6">
                       <div className="mb-3 text-[#1ED760] bg-[#1ed76015] p-3 rounded-full">{item.icon}</div>
-                      <span className="font-medium mb-2 text-lg">{item.title}</span>
+                      <span className="font-medium mb-2 text-lg text-white">{item.title}</span>
                       <span className="text-sm text-gray-400 text-center">{item.description}</span>
                     </CardContent>
                   </Card>
@@ -91,7 +92,7 @@ const Index = () => {
                     style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1639322537158-c5d1cea8361e?q=80&w=800&auto=format&fit=crop)' }}
                   ></div>
                   <CardContent className="p-5">
-                    <h3 className="text-xl font-semibold mb-2">E-commerce Platform</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-white">E-commerce Platform</h3>
                     <p className="text-sm text-gray-300 mb-3">
                       A modern e-commerce platform with a focus on user experience and performance.
                     </p>
@@ -109,7 +110,7 @@ const Index = () => {
                     style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1595665593673-bf1ad72905c0?q=80&w=800&auto=format&fit=crop)' }}
                   ></div>
                   <CardContent className="p-5">
-                    <h3 className="text-xl font-semibold mb-2">Portfolio Website</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-white">Portfolio Website</h3>
                     <p className="text-sm text-gray-300 mb-3">
                       A personal portfolio website with unique animations and interactions.
                     </p>
