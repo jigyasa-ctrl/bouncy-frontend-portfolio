@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 
-const Navbar: React.FC = () => {
+const Navbar: React.FC<any>= ({setImageIndex, isDeviceSmall}: {setImageIndex: Function, isDeviceSmall: boolean}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -24,14 +24,14 @@ const Navbar: React.FC = () => {
       )}
     >
       <div className="flex items-center gap-4">
-        <div className="flex gap-2">
+        {!isDeviceSmall && <div className="flex gap-2">
           <button className="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center hover:bg-black/80 transition-colors">
-            <ChevronLeft size={18} />
+            <ChevronLeft size={18} onClick={() => setImageIndex(prev => prev == 0 ? 2 : prev-1)} />
           </button>
           <button className="w-8 h-8 rounded-full bg-black/60 flex items-center justify-center hover:bg-black/80 transition-colors">
-            <ChevronRight size={18} />
+            <ChevronRight size={18}  onClick={() => setImageIndex(prev => prev == 2 ? 0 : prev+1)} />
           </button>
-        </div>
+        </div>}
       </div>
       
       <div className="flex-1 flex justify-end">

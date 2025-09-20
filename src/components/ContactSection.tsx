@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
 import { Loader2 } from 'lucide-react';
+import {EmailTemplateParams } from '@/config/emailjs';
 
 const ContactSection: React.FC = () => {
   const { toast } = useToast();
@@ -15,16 +16,73 @@ const ContactSection: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
     
-    toast({
-      title: "Message sent successfully!",
-      description: "I'll get back to you as soon as possible.",
-    });
-    
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
+    const templateParams: EmailTemplateParams = {
+      from_name: formData.get('name') as string,
+      from_email: formData.get('email') as string,
+      message: formData.get('message') as string,
+      phone:  formData.get('phone') as string,
+    };
+
+    try {
+      const response = await fetch('https://formspree.io/f/mpwqkaro', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: templateParams.from_email,
+          name: templateParams.from_name,
+          phone: templateParams.phone,
+          message: templateParams.message
+        })
+      });
+
+      if (response.ok) {
+        toast({
+          title: 'Message Sent Successfully !',
+          description: 'Thank you! Your message has been sent successfully.'
+        });
+        // setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        title: 'error',
+        description: 'Sorry, there was an error sending your message. Please try again.',
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    // try {
+    //   await emailjs.send(
+    //     EMAILJS_CONFIG.serviceId,
+    //     EMAILJS_CONFIG.templateId,
+    //     templateParams as Record<string, unknown>,
+    //     EMAILJS_CONFIG.publicKey
+    //   );
+      
+    //   toast({
+    //     title: "Message sent successfully!",
+    //     description: "I'll get back to you as soon as possible.",
+    //   });
+      
+    //   form.reset();
+    // } catch (error) {
+    //   console.error('Error sending email:', error);
+    //   toast({
+    //     title: "Failed to send message",
+    //     description: "Please try again or contact me directly at jigyasaupadhyay60@gmail.com",
+    //     variant: "destructive",
+    //   });
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
   };
   
   return (
@@ -48,11 +106,13 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold mb-1">Email</h3>
-                  <a href="mailto:jigyasaupadhyay.work@gmail.com" className="text-muted-foreground transition-colors">
-                    jigyasaupadhyay.work@gmail.com
+                  <a href="mailto:jigyasaupadhyay60@gmail.com" className="text-muted-foreground transition-colors">
+                    jigyasaupadhyay60@gmail.com
                   </a>
                 </div>
               </div>
+
+              
               
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
@@ -68,9 +128,9 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="glass p-8 rounded-lg">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit}  className="space-y-6">
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium">
                   Name
@@ -79,7 +139,7 @@ const ContactSection: React.FC = () => {
                   id="name"
                   name="name"
                   required
-                  placeholder="Jigyasa Upadhyay"
+                  placeholder="John Doe"
                   className="bg-background/50"
                 />
               </div>
@@ -94,6 +154,20 @@ const ContactSection: React.FC = () => {
                   type="email"
                   required
                   placeholder="john@example.com"
+                  className="bg-background/50"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium">
+                  Email
+                </label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  placeholder=""
                   className="bg-background/50"
                 />
               </div>
@@ -113,7 +187,7 @@ const ContactSection: React.FC = () => {
               
               <Button 
                 type="submit" 
-                className="w-full" 
+                className="w-full bg-[#1ED760]" 
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (

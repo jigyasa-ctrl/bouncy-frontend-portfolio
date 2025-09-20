@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, Rss } from 'lucide-react';
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
@@ -23,32 +23,34 @@ const Footer: React.FC = () => {
           
           <div className="flex items-center space-x-6">
             <a 
-              href="#" 
               className="text-gray-400 hover:text-[#1ED760] transition-colors p-2 hover:bg-[#282828] rounded-full"
               aria-label="GitHub"
+              onClick={() => window.open("https://www.github.com/jigyasa-ctrl")}
             >
               <Github size={20} />
             </a>
             <a 
-              href="#" 
               className="text-gray-400 hover:text-[#1ED760] transition-colors p-2 hover:bg-[#282828] rounded-full"
               aria-label="LinkedIn"
+              onClick={() => window.open("https://www.linkedin.com/in/jigyasa-upadhyay-24963515b/")}
             >
               <Linkedin size={20} />
             </a>
             <a 
-              href="#" 
-              className="text-gray-400 hover:text-[#1ED760] transition-colors p-2 hover:bg-[#282828] rounded-full"
-              aria-label="Twitter"
-            >
-              <Twitter size={20} />
-            </a>
-            <a 
-              href="#" 
+              href="mailto:jigyasaupadhyay60@gmail.com" 
               className="text-gray-400 hover:text-[#1ED760] transition-colors p-2 hover:bg-[#282828] rounded-full"
               aria-label="Email"
             >
               <Mail size={20} />
+            </a>
+           
+            <a 
+              className="text-gray-400 hover:text-[#1ED760] transition-colors p-2 hover:bg-[#282828] rounded-full"
+              aria-label="Email"
+              onClick={() => window.open(" https://medium.com/@jigyasaupadhyay60")}
+
+            >
+              <Rss size={20} />
             </a>
           </div>
         </div>

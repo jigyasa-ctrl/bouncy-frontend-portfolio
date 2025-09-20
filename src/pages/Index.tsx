@@ -3,20 +3,49 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import AboutSection from '@/components/AboutSection';
 import ProjectsSection from '@/components/ProjectsSection';
+import BlogsSection from '@/components/BlogsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import SpotifyFooter from '@/components/SpotifyFooter';
 import SpotifySidebar from '@/components/SpotifySidebar';
+import TestimonialsSection from '@/components/TestimonialSection'
 import { Card, CardContent } from '@/components/ui/card';
 import { Code, Layout, Sparkles, Database } from 'lucide-react';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(true);
+  const [imageIndex, setImageIndex] = useState(0)
+  const [isDeviceSmall, setisDeviceSmall] = useState(false)
 
   useEffect(() => {
     setIsLoaded(true);
+
+    if (typeof window !== "undefined") {
+      const media = window.matchMedia("(max-width: 1180px)");
+      if (media.matches) {
+        setisDeviceSmall(true);
+      } else {
+        setisDeviceSmall(false);
+      }
+
+      function updateMedia(event: MediaQueryListEvent) {
+        setisDeviceSmall(event.matches);
+      }
+
+      media.addEventListener('change', updateMedia);
+
+      // Cleanup listener on unmount
+      return () => {
+        media.removeEventListener('change', updateMedia);
+      };
+    }
   }, []);
+
+  const handleSidebarToggle = (isCollapsed: boolean) => {
+    setIsSidebarCollapsed(isCollapsed);
+  };
 
   const overviewItems = [
     { 
@@ -44,19 +73,39 @@ const Index = () => {
   return (
     <div className={`min-h-screen ${isLoaded ? 'opacity-100' : 'opacity-0'} transition-opacity duration-500 bg-[#121212] text-white`}>
       <div className="flex">
-        <SpotifySidebar />
+        <SpotifySidebar onToggle={handleSidebarToggle} />
         
-        <div className="flex-1 ml-[240px]">
-          <Navbar />
+        <div className={`flex-1 transition-all duration-300 ${
+          isSidebarCollapsed ? 'ml-[60px]' : 'ml-[240px]'
+        }`}>
+          <Navbar setImageIndex={setImageIndex} isDeviceSmall={isDeviceSmall}/>
           
           {/* Hero Section */}
           <section className="px-8 pt-12 pb-6 bg-gradient-to-b from-[#1a1a1a] to-[#121212]">
+            <div className='flex flex-row justify-between'>
             <div className="max-w-4xl">
               <h1 className="text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">Hi, I'm Jigyasa Upadhyay</h1>
-              <h2 className="text-3xl md:text-4xl text-gray-300 font-semibold mb-6">Frontend Developer</h2>
+              <h2 className="text-3xl md:text-4xl text-gray-300 font-semibold mb-6">Frontend Developer | <span style={{
+                color: "#0FA851"
+              }}>5 years experience </span></h2>
               <p className="text-gray-400 text-lg mb-16 max-w-2xl">
-                Creating exceptional digital experiences with clean code and modern design principles. Specialized in React, TypeScript, and Next.js development.
+                Creating exceptional digital experiences with clean code and modern design principles. Specialized in <span style={{
+                color: "#0FA851"
+              }}>React</span>, <span style={{
+                color: "#0FA851"
+              }}>TypeScript</span>, and <span style={{
+                color: "#0FA851"
+              }}>Next.js</span> development.
               </p>
+            </div>
+            {!isDeviceSmall && <img 
+              src={`${imageIndex}.jpg`} 
+              className='rounded-md' 
+              style={{ width: '500px', height: '400px'}} 
+              width={300} 
+              height={200} 
+            /> }
+
             </div>
             
             {/* Overview Section */}
@@ -89,17 +138,16 @@ const Index = () => {
                 <Card className="bg-[#282828] border-none hover:bg-[#333] transition-all duration-300 overflow-hidden hover:translate-y-[-5px]">
                   <div 
                     className="h-48 bg-cover bg-center"
-                    style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1639322537158-c5d1cea8361e?q=80&w=800&auto=format&fit=crop)' }}
+                    style={{ backgroundImage: 'url(cherry.jpg)' }}
                   ></div>
                   <CardContent className="p-5">
-                    <h3 className="text-xl font-semibold mb-2 text-white">E-commerce Platform</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-white">Cherr-GPT</h3>
                     <p className="text-sm text-gray-300 mb-3">
-                      A modern e-commerce platform with a focus on user experience and performance.
+                    Cherry - AI chrome extension powered by chatGPT that provides on the go assitance on the web.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">React</span>
-                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Node.js</span>
-                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Stripe</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Javascript</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">OpenAI API</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -110,14 +158,15 @@ const Index = () => {
                     style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1595665593673-bf1ad72905c0?q=80&w=800&auto=format&fit=crop)' }}
                   ></div>
                   <CardContent className="p-5">
-                    <h3 className="text-xl font-semibold mb-2 text-white">Portfolio Website</h3>
+                    <h3 className="text-xl font-semibold mb-2 text-white">AI Code Reviewer</h3>
                     <p className="text-sm text-gray-300 mb-3">
-                      A personal portfolio website with unique animations and interactions.
+                    A local-first, AI-powered code review app that leverages AI to review your code and provide suggestions to optimize and best practises.
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Next.js</span>
-                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Tailwind</span>
-                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Framer</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Ollama | Langchain</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">NodeJS</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Express</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -127,6 +176,8 @@ const Index = () => {
           
           <AboutSection />
           <ProjectsSection />
+          <BlogsSection />
+          <TestimonialsSection />
           <ContactSection />
           <Footer />
         </div>

@@ -16,10 +16,18 @@ const SkillCard: React.FC<SkillCardProps> = ({ icon, title, description, classNa
       "bg-[#282828] p-6 rounded-lg transition-all duration-300 hover:translate-y-[-5px] hover:bg-[#333] border-l-4 border-[#1ED760]",
       className
     )}>
-      <div className="mb-4 inline-flex items-center justify-center w-12 h-12 rounded-md bg-[#1ed76015] text-[#1ED760]">
-        {icon}
+      <span style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'left',
+      }}>
+      <div className="mb-4 inline-flex items-center justify-center mr-5 rounded-md bg-[#1ed76015] text-[#1ED760]">
+        {icon} 
       </div>
       <h3 className="text-xl font-semibold mb-2">{title}</h3>
+      </span>
+      
       <p className="text-gray-400">{description}</p>
     </div>
   );
@@ -39,8 +47,10 @@ const AboutSection: React.FC = () => {
                 I'm a frontend developer with a passion for creating beautiful, functional, and user-centered digital experiences. With 5+ years of experience in design and development, I bring a unique perspective to every project.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed">
-                My approach combines clean code, modern design principles, and a deep understanding of user needs. I'm constantly exploring new technologies and techniques to push the boundaries of what's possible on the web.
+                My approach combines clean code, modern design principles, and a deep understanding of UI optimization and Performance. Don't believe me ? Check Lighthouse for performance score.
+                 I'm constantly exploring new technologies and techniques to push the boundaries of what's possible on the web.
               </p>
+              <p>Exploring AI boundaries right now. Let's make something awesome ?</p>
               <div className="pt-4">
                 <a 
                   href="#contact" 

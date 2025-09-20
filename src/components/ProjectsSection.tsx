@@ -7,37 +7,58 @@ import { ExternalLink, Github } from 'lucide-react';
 const ProjectsSection: React.FC = () => {
   const projects = [
     {
-      title: "E-commerce Platform",
-      description: "A modern e-commerce platform with a focus on user experience and performance. Features include product search, filtering, cart management, and secure checkout with Stripe integration.",
-      imageUrl: "https://images.unsplash.com/photo-1639322537158-c5d1cea8361e?q=80&w=800&auto=format&fit=crop",
-      technologies: ["React", "Node.js", "AI", "Stripe"],
-      githubUrl: "https://github.com/username/ecommerce",
-      liveUrl: "https://ecommerce.example.com"
+      title: "Cherr-GPT",
+      description: "Cherry - AI chrome extension powered by chatGPT for on the go AI assistance while writing on the web..",
+      imageUrl: "cherry.jpg",
+      technologies: ["Javascript", "OpenAI Apis", ],
+      githubUrl: "https://github.com/jigyasa-ctrl/cherry-GPT",
+      liveUrl: "https://github.com/jigyasa-ctrl/cherry-GPT",
     },
     {
-      title: "Portfolio Website",
-      description: "A personal portfolio website with unique animations and interactions. Features a responsive design, dark/light mode toggle, and contact form integration with email notifications.",
-      imageUrl: "https://images.unsplash.com/photo-1595665593673-bf1ad72905c0?q=80&w=800&auto=format&fit=crop",
-      technologies: ["Next.js", "Tailwind CSS", "Framer Motion", "Vercel"],
-      githubUrl: "https://github.com/username/portfolio",
-      liveUrl: "https://portfolio.example.com"
+      title: "AI Code Reviewer",
+      description: "AI Code reviewer web app that leverages AI to provide insightful code reviews, enhancing code quality and developer productivity.",
+      imageUrl: "code.jpg",
+      technologies: ["Next.js", "Ollama | Langchain", "NodeJS", "Express"],
+      githubUrl: "https://github.com/jigyasa-ctrl/code-reviewer",
+      liveUrl: "https://github.com/jigyasa-ctrl/code-reviewer",
     },
     {
       title: "Dashboard UI",
-      description: "A comprehensive dashboard interface for data analytics and monitoring. Includes customizable widgets, real-time data visualization with interactive charts, and report generation.",
-      imageUrl: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=800&auto=format&fit=crop",
-      technologies: ["React", "D3.js", "Firebase", "Material UI"],
-      githubUrl: "https://github.com/username/dashboard",
-      liveUrl: "https://dashboard.example.com"
+      description: "A comprehensive dashboard interface for data analytics and monitoring.",
+      imageUrl: "dash.jpeg",
+      technologies: ["React", "recharts", "Firebase", "Material UI", ],
+      githubUrl: "https://github.com/jigyasa-ctrl/Dashboard-UI",
+      liveUrl: "https://dash-interface.netlify.app",
     },
     {
-      title: "Task Management App",
-      description: "A cross-platform mobile application for task management with collaboration features. Supports task assignment, due dates, progress tracking, and real-time notifications.",
-      imageUrl: "https://images.unsplash.com/photo-1601933513711-9bed9b0e6739?q=80&w=800&auto=format&fit=crop",
-      technologies: ["React Native", "Redux", "Express", "PostgreSQL"],
-      githubUrl: "https://github.com/username/taskapp",
-      liveUrl: "https://taskapp.example.com"
-    }
+      title: "PuppyGram",
+      description: "It's a Place to add amazing and cute memories of your pets! add, edit, delete and view all your pet memories in one place and engage with other pet lovers.",
+      imageUrl: "pets.jpeg",
+      technologies: ["ReactJS", "Express", "NodeJS", "MongoDB", "Mongoose", "CSS"],
+      githubUrl: "https://github.com/jigyasa-ctrl/PuppyGram",
+      liveUrl: "https://github.com/jigyasa-ctrl/PuppyGram",
+    },
+    
+    
+    {
+      title: "Staff Talents",
+      description: "Website for Staff Talents LLC.",
+      imageUrl: "staff.jpg",
+      technologies: ["NextJS", "Tailwind CSS", "FramerMotion"],
+      githubUrl: "",
+      liveUrl: "https://stafftalentssolutions.com/",
+      isPrivate: true
+    },
+    {
+      title: "Mango Analytics",
+      description: "Website for Mango Analytics AI Consulting Firm.",
+      imageUrl: "mango.jpg",
+      technologies: ["NextJS", "Tailwind CSS", "FramerMotion", "Web Perfromance", "optimizations"],
+      githubUrl: "",
+      liveUrl: "https://hilarious-fudge-d6682a.netlify.app/",
+      isPrivate: true
+    },
+    
   ];
 
   return (
@@ -47,7 +68,7 @@ const ProjectsSection: React.FC = () => {
           Projects
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <Card 
               key={index}
@@ -62,10 +83,10 @@ const ProjectsSection: React.FC = () => {
               >
                 <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                   <a 
-                    href={project.githubUrl}
+                    href={project.isPrivate ? "" : project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-black/60 text-white p-3 rounded-full hover:bg-[#1ED760]/80 transition-colors"
+                    className={`bg-black/60 text-white p-3 rounded-full hover:bg-[#1ED760]/80 transition-colors`}
                   >
                     <Github size={20} />
                   </a>
@@ -100,7 +121,7 @@ const ProjectsSection: React.FC = () => {
                     className="text-sm flex items-center gap-1 text-gray-400 hover:text-[#1ED760] transition-colors"
                   >
                     <Github size={16} />
-                    <span>View Code</span>
+                    <span>{project.isPrivate ?  "Private project" : "View Code"}</span>
                   </a>
                   <a 
                     href={project.liveUrl} 

@@ -3,22 +3,34 @@ import { Play, Pause, SkipForward, SkipBack, Volume2, Maximize2 } from 'lucide-r
 
 const SpotifyFooter = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isAudioLoaded, setIsAudioLoaded] = useState(false);
   const [currentTime, setCurrentTime] = useState(0); // 2:14 in seconds
   const totalTime = 225; // 3:45 in seconds
   const audioRef = React.useRef<HTMLAudioElement | null>(null);
 
   const togglePlayPause = () => {
-    if (isPlaying) {
-      audioRef.current?.pause();
-    } else {
-      audioRef.current?.play();
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    // Lazy-attach src and load only on first interaction
+    if (!isAudioLoaded) {
+      audio.src = '/Uptown-Funk.mp3';
+      audio.load();
+      setIsAudioLoaded(true);
     }
-    setIsPlaying(!isPlaying);
+
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    } else {
+      audio.play();
+      setIsPlaying(true);
+    }
   };
 
   // Update time every second when playing
   useEffect(() => {
-    let interval: number | undefined;
+    let interval: ReturnType<typeof setInterval> | undefined;
     
     if (isPlaying) {
       interval = setInterval(() => {
@@ -46,15 +58,15 @@ const SpotifyFooter = () => {
 
   return (
     <>
-      <audio ref={audioRef} src="public/Uptown-Funk.mp3" />
+      <audio ref={audioRef} preload="none" playsInline />
       <div className="fixed bottom-0 left-0 right-0 h-[90px] bg-[#181818] border-t border-[#282828] flex items-center px-6 z-50">
         <div className="w-[30%] flex items-center">
           <div className="w-14 h-14 bg-cover bg-center rounded mr-3 flex-shrink-0 shadow-md" 
-            style={{ backgroundImage: 'url(public/uptown.png)' }}>
+            style={{ backgroundImage: 'url(/uptown.png)' }}>
           </div>
           <div className="space-y-1">
             <h4 className="text-sm font-medium text-white">Don't believe me, just watch</h4>
-            <p className="text-xs text-gray-400">Frontend Developer</p>
+            <p className="text-xs text-gray-400">Frontend Developer </p>
           </div>
         </div>
         
