@@ -70,10 +70,6 @@ export const TestimonialsSection = () => {
               <div className="pointer-events-none absolute -inset-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden>
                 <div
                   className="absolute inset-0 rounded-[28px] blur-2xl"
-                  style={{
-                    background:
-                      'radial-gradient(120px 120px at 85% 20%, #1ED76055, transparent 60%), radial-gradient(160px 160px at 15% 80%, #0FA85144, transparent 60%)',
-                  }}
                 />
               </div>
               {/* top quotes */}

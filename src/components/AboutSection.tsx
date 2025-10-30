@@ -47,10 +47,10 @@ const AboutSection: React.FC = () => {
                 I'm a frontend developer with a passion for creating beautiful, functional, and user-centered digital experiences. With 5+ years of experience in design and development, I bring a unique perspective to every project.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed">
-                My approach combines clean code, modern design principles, and a deep understanding of UI optimization and Performance. Don't believe me ? Check Lighthouse for performance score.
+                My approach combines clean code, modern design principles, and a deep understanding of UI optimization and Performance.
                  I'm constantly exploring new technologies and techniques to push the boundaries of what's possible on the web.
               </p>
-              <p>Exploring AI boundaries right now. Let's make something awesome ?</p>
+              <p className="text-gray-300 text-lg leading-relaxed">Exploring AI boundaries right now. Let's make something awesome.</p>
               <div className="pt-4">
                 <a 
                   href="#contact" 
@@ -71,14 +71,14 @@ const AboutSection: React.FC = () => {
             />
             <SkillCard
               icon={<Layout size={24} />}
-              title="UI/UX Design"
-              description="Creating intuitive interfaces and seamless user experiences through thoughtful design systems and user research."
+              title="Web Optimization and Performance"
+              description="Optimizing websites for speed, accessibility, and scalability using best practices in performance, SEO, and modern web tooling like lighthouse."
               className="animate-fade-in fade-delay-2"
             />
             <SkillCard
               icon={<Sparkles size={24} />}
               title="Creative Coding"
-              description="Leveraging JavaScript, WebGL, and CSS to create engaging animations and interactive experiences that delight users."
+              description="Utilizing modern JavaScript practices and component-based architecture to craft high quality and performant UI experiences."
               className="animate-fade-in fade-delay-3"
             />
           </div>

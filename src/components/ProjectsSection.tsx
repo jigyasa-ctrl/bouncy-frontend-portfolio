@@ -7,8 +7,32 @@ import { ExternalLink, Github } from 'lucide-react';
 const ProjectsSection: React.FC = () => {
   const projects = [
     {
-      title: "Cherr-GPT",
-      description: "Cherry - AI chrome extension powered by chatGPT for on the go AI assistance while writing on the web..",
+      title: "Journal AI",
+      description: "A powerful journaling tool integrated with advanced AI features to analyze your thoughts and guide you on self-improvement journeys. With Groq and LLM integration, Journal AI offers deep insights, mood tracking, sentiment analysis, and smart prompts to enhance your writing and reflection experience.",
+      imageUrl: "journal.png",
+      technologies: ["Groq", "OpenAI APIs", "React", "Next.js", "Tailwind CSS", "Node.js", "Express"],
+      githubUrl: "https://github.com/jigyasa-ctrl/journal-with-AI",
+      liveUrl: "https://journal-with-ai.netlify.app/",
+    },
+    {
+      title: "ChaD GPT",
+      description: "ChaD GPT is an advanced AI assistant powered by Groq and OpenAI, featuring tool calling capabilities and integrated Tavily web search for enhanced, contextual responses.",
+      imageUrl: "chatdgpt.png",
+      technologies: ["Groq", "OpenAI API", "Tavily Web Search", "React", "Next.js", "Tailwind CSS"],
+      githubUrl: "https://github.com/jigyasa-ctrl/gen-ai",
+      liveUrl: "https://github.com/jigyasa-ctrl/gen-ai",
+    },
+    {
+      title: "RAG-chatbot",
+      description: "A company chatbot leveraging Retrieval Augmented Generation (RAG) for contextual information retrieval and dynamic responses, built with a modern AI stack.",
+      imageUrl: "custom.png",
+      technologies: ["Groq", "OpenAI APIs", "LangChain", "Pinecone", "chromadb","ollama", "React", "Next.js", "Tailwind CSS", "Node.js", "Express"],
+      githubUrl: "https://github.com/jigyasa-ctrl/customizable-chatbot",
+      liveUrl: "https://github.com/jigyasa-ctrl/customizable-chatbot",
+    },
+    {
+      title: "Cherry-GPT",
+      description: "Cherry-GPT chrome extension powered by chatGPT for on the go AI assistance while writing on the web..",
       imageUrl: "cherry.jpg",
       technologies: ["Javascript", "OpenAI Apis", ],
       githubUrl: "https://github.com/jigyasa-ctrl/cherry-GPT",
@@ -42,7 +66,7 @@ const ProjectsSection: React.FC = () => {
     
     {
       title: "Staff Talents",
-      description: "Website for Staff Talents LLC.",
+      description: "Official Website for Staff Talents LLC.",
       imageUrl: "staff.jpg",
       technologies: ["NextJS", "Tailwind CSS", "FramerMotion"],
       githubUrl: "",

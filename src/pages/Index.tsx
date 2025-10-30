@@ -134,7 +134,28 @@ const Index = () => {
                 </a>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Card className="bg-[#282828] border-none hover:bg-[#333] transition-all duration-300 overflow-hidden hover:translate-y-[-5px]">
+                  <div 
+                    className="h-48 bg-cover bg-center"
+                    style={{ backgroundImage: 'url(journal.png)' }}
+                  ></div>
+                  <CardContent className="p-5">
+                    <h3 className="text-xl font-semibold mb-2 text-white">Journal AI</h3>
+                    <p className="text-sm text-gray-300 mb-3">
+                    A powerful journaling tool integrated with advanced AI features to analyze your thoughts and guide you on self-improvement journeys. With Groq and LLM integration, Journal AI offers deep insights, mood tracking, sentiment analysis, and smart prompts to enhance your writing and reflection experience.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Groq</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">OpenAI API</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">React</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Next.js</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Tailwind CSS</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Node.js</span>
+                      <span className="text-xs bg-[#333] px-2 py-1 rounded-full text-gray-300">Express</span>
+                    </div>
+                  </CardContent>
+                </Card>
                 <Card className="bg-[#282828] border-none hover:bg-[#333] transition-all duration-300 overflow-hidden hover:translate-y-[-5px]">
                   <div 
                     className="h-48 bg-cover bg-center"
