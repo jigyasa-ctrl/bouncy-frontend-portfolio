@@ -11,6 +11,12 @@ export default defineConfig(({ mode }) => ({
       origin: [
         "https://3bf87c4a50ac.ngrok-free.app"
       ]
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+      }
     }
   },
   plugins: [
