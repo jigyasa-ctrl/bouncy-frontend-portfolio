@@ -9,6 +9,7 @@ import Footer from '@/components/Footer';
 import SpotifyFooter from '@/components/SpotifyFooter';
 import SpotifySidebar from '@/components/SpotifySidebar';
 import TestimonialsSection from '@/components/TestimonialSection'
+import ChatWidget from '@/components/ChatBot/ChatWidget';
 import { Card, CardContent } from '@/components/ui/card';
 import { Code, Layout, Sparkles, Database } from 'lucide-react';
 import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
@@ -205,6 +206,7 @@ const Index = () => {
       </div>
       
       <SpotifyFooter />
+      <ChatWidget />
     </div>
   );
 };
