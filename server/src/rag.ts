@@ -1,5 +1,7 @@
-import { OllamaEmbeddings } from '@langchain/community/embeddings/ollama';
-import { ChatOllama } from '@langchain/community/chat_models/ollama';
+// import { OllamaEmbeddings } from '@langchain/community/embeddings/ollama';
+import { GoogleGenerativeAIEmbeddings } from '@langchain/google-genai';
+// import { ChatOllama } from '@langchain/community/chat_models/ollama';
+import { ChatGroq } from '@langchain/groq';
 import { MemoryVectorStore } from 'langchain/vectorstores/memory';
 import { RecursiveCharacterTextSplitter } from 'langchain/text_splitter';
 import { Document } from '@langchain/core/documents';
@@ -11,7 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 let vectorStore: MemoryVectorStore | null = null;
-let llm: ChatOllama | null = null;
+// let llm: ChatOllama | null = null;
+let llm: ChatGroq | null = null;
 
 const SYSTEM_PROMPT = `You are Jigyasa's AI assistant on her portfolio website. Your role is to help visitors (recruiters, hiring managers, potential collaborators) learn about Jigyasa.
 
@@ -51,17 +54,27 @@ export async function initializeRAG(): Promise<void> {
   const chunks = await splitter.splitDocuments(documents);
   console.log(`🔪 Split into ${chunks.length} chunks`);
 
-  const embeddings = new OllamaEmbeddings({
-    model: 'nomic-embed-text', // You will need to pull this model: ollama pull nomic-embed-text
+  // const embeddings = new OllamaEmbeddings({
+  //   model: 'nomic-embed-text', // You will need to pull this model: ollama pull nomic-embed-text
+  // });
+  const embeddings =
+  new GoogleGenerativeAIEmbeddings({
+    apiKey: process.env.GOOGLE_API_KEY,
+    model: 'gemini-embedding-001',
   });
 
   vectorStore = await MemoryVectorStore.fromDocuments(chunks, embeddings);
   console.log('✅ Vector store initialized');
 
-  llm = new ChatOllama({
-    model: 'llama3', // You will need to pull this model: ollama pull llama3
-    temperature: 0.7,
-  });
+  // llm = new ChatOllama({
+  //   model: 'llama3', // You will need to pull this model: ollama pull llama3
+  //   temperature: 0.7,
+  // });
+  llm = new ChatGroq({
+  apiKey: process.env.GROQ_API_KEY,
+  model: 'llama-3.3-70b-versatile',
+  temperature: 0.4,
+});
   console.log('✅ LLM initialized');
 }
 
@@ -79,9 +92,28 @@ export async function queryRAG(
   }
 
   // Retrieve relevant documents
-  const relevantDocs = await vectorStore.similaritySearch(question, 4);
-  const context = relevantDocs.map(doc => doc.pageContent).join('\n\n---\n\n');
-  const sources = [...new Set(relevantDocs.map(doc => doc.metadata.source))];
+const results =
+  await vectorStore.similaritySearchWithScore(question, 4);
+
+const relevantDocs = results
+  .filter(([_, score]) => score < 1.2)
+  .map(([doc]) => doc);
+
+const context = relevantDocs
+  .map(doc => doc.pageContent)
+  .join('\n\n---\n\n');
+
+const sources = [
+  ...new Set(relevantDocs.map(doc => doc.metadata.source))
+];
+
+if (!relevantDocs.length) {
+  return {
+    reply:
+      "I don't have that specific information, but feel free to reach out to Jigyasa directly via the contact form on this website!",
+    sources: [],
+  };
+}
 
   // Build messages array
   const messages: { role: string; content: string }[] = [
