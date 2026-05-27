@@ -11,6 +11,7 @@ interface UseChatReturn {
 }
 
 export function useChat(): UseChatReturn {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 'welcome',
@@ -54,7 +55,7 @@ export function useChat(): UseChatReturn {
         .slice(-6)
         .map(m => ({ role: m.role, content: m.content }));
 
-      const response = await fetch('/api/chat', {
+      const response = await fetch(`${API_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
